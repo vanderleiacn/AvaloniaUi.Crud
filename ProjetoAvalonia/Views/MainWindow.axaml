@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ProjetoAvalonia.ViewModels"
+		xmlns:event="using:ProjetoAvalonia.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+		d:DesignWidth="800"
+		d:DesignHeight="800"
+        x:Class="ProjetoAvalonia.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="CRUD">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+
+	<StackPanel>
+		<TextBlock Text="{Binding Greeting}" Foreground="Black" HorizontalAlignment="Center" Margin="15" VerticalAlignment="Center"/>
+
+		<Grid HorizontalAlignment="Center">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+
+			<TextBox Grid.Row="0" Width="400" Height="25" Watermark="Nome" Text="{Binding NomeCliente}" Margin="0,0,0,5"/>
+			<TextBox Grid.Row="1" Width="400" Height="25" Watermark="Email" Text="{Binding EmailCliente}" Margin="0,0,0,5"/>
+			<TextBox Grid.Row="2" Width="400" Height="25" Watermark="Telefone" Text="{Binding TelefoneCliente}" Margin="0,0,0,5"/>
+
+			<StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+				<Button Background="LightGray" Padding="5" Name="btnCadastrar" BorderBrush="Gray" Command="{Binding SalvarEventCommand}">Salvar</Button>
+				<Button Background="LightGray" Padding="5" Name="btnBuscar" BorderBrush="Gray" Command="{Binding BuscarEventCommand}">Buscar</Button>
+				<Button Background="LightGray" Padding="5" Name="btnExcluir" BorderBrush="Gray" Command="{Binding ExcluirEventCommand}">Excluir</Button>
+				<Button Background="LightGray" Padding="5" Name="btnLimpar" BorderBrush="Gray" Command="{Binding LimparEventCommand}">Limpar</Button>
+			</StackPanel>
+		</Grid>
+
+		<DataGrid Margin="20" MinHeight="250" MaxHeight="250" ItemsSource="{Binding Clientes}"
+		  IsReadOnly="True"
+		  CanUserReorderColumns="True"
+		  CanUserResizeColumns="True"
+		  CanUserSortColumns="True"
+		  GridLinesVisibility="All"
+		  BorderThickness="1" BorderBrush="Gray">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Nome"  Binding="{Binding Nome}"/>
+				<DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+				<DataGridTextColumn Header="Telefone" Binding="{Binding Telefone}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+	</StackPanel>
+
+
+
+</Window>
