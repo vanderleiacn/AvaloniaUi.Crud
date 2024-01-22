@@ -19,3 +19,4 @@ namespace ProjetoAvalonia
                 .UseReactiveUI();
     }
 }
+// define as configurações iniciais e a entrada principal para o aplicativo Avalonia
